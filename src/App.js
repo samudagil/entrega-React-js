@@ -1,19 +1,24 @@
-import React from "react";
-import Navbar from "./NavBar.js";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Productos from "./pages/Productos";
+import Error from "./pages/Error";
+import Layout from "./pages/Layout";
+import DetalleProducto from "./pages/DetalleProducto";
+import ItemCount from './components/ItemCount'
+import "./App.css";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <main>
-        <section>
-          <h1>Bienvenido</h1>
-        </section>
-        <section>
-          <h1>MULTIMAX</h1>
-        </section>
-      </main>
-    </div>
+        <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout/>}>
+            <Route index element={<Home/>} />
+            <Route path="productos" element={<Productos/>} />
+            <Route path="productos/:productoId" element={<DetalleProducto/>}/>
+          </Route>
+          <Route path="*" element={<Error/>}/>
+        </Routes>
+    </BrowserRouter>
   );
 }
 
